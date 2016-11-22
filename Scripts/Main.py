@@ -51,7 +51,7 @@ def getProgramToRun(programs):
     programIndex = Utils.toInt(input("\n> Run program: "), 0)
 
     if (programIndex == 0) or (programIndex > len(programs)):
-        print("! Error ! Invalid Selection\n")
+        print("{} Invalid Selection\n".format(Utils.errorMessage()))
         return getProgramToRun(programs)
 
     return programIndex - 1

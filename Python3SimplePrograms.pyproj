@@ -44,6 +44,7 @@
     <Compile Include="Scripts\Program4_Fibonacci.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Scripts\Program5_FileInputTXT.py" />
     <Compile Include="Scripts\SimpleProgramUtilities.py">
       <SubType>Code</SubType>
     </Compile>

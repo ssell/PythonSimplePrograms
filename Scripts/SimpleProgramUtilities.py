@@ -13,6 +13,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
+
+# ------------------------------------------------------------------------
+# 
+# ------------------------------------------------------------------------
+
+def errorMessage():
+    return "! Error !"
+
+# ------------------------------------------------------------------------
+# Used for declaring static function variables.
+# Credit: http://stackoverflow.com/a/279586
+# ------------------------------------------------------------------------
+
+def staticVars(**args):
+    def decorate(func):
+        for arg in args:
+            setattr(func, arg, args[arg])
+        return func
+    return decorate
+
 # ------------------------------------------------------------------------
 # A simple function to convert a string to an int. If the conversion fails,
 # then the specified fallback value is returned.
@@ -28,3 +49,24 @@ def toInt(str, fallback):
         return int(str)
     except ValueError:
         return fallback
+
+# ------------------------------------------------------------------------
+#
+# ------------------------------------------------------------------------
+
+def getDataPath():
+    return os.path.join(os.path.dirname(os.path.realpath(__file__)), (".." + os.sep + "Data"))
+
+# ------------------------------------------------------------------------
+#
+# ------------------------------------------------------------------------
+
+@staticVars(dataPath=getDataPath())
+def getDataFile(filename):
+    file = (getDataFile.dataPath + os.sep + filename)
+
+    if not os.path.isfile(file):
+        print("{} Failed to find Data file '{}'".format(errorMessage(), file))
+        file = ""
+
+    return file
