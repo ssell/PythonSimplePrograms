@@ -16,7 +16,8 @@
 import os
 
 # ------------------------------------------------------------------------
-# 
+# Standard error message start.
+# \return String
 # ------------------------------------------------------------------------
 
 def errorMessage():
@@ -51,14 +52,19 @@ def toInt(str, fallback):
         return fallback
 
 # ------------------------------------------------------------------------
-#
+# Retrieves the static path for the Data files.
+# \return String
 # ------------------------------------------------------------------------
 
 def getDataPath():
     return os.path.join(os.path.dirname(os.path.realpath(__file__)), (".." + os.sep + "Data"))
 
 # ------------------------------------------------------------------------
+# Retrieves the full system path for the specified data file.
+# The data file is expected to reside in the Data folder.
 #
+# \param filename Filename (including extension) of the data file.
+# \return Full system path to the data file. If DNE, returns empty string.
 # ------------------------------------------------------------------------
 
 @staticVars(dataPath=getDataPath())
