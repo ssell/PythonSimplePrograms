@@ -68,11 +68,12 @@ def getDataPath():
 # ------------------------------------------------------------------------
 
 @staticVars(dataPath=getDataPath())
-def getDataFile(filename):
+def getDataFile(filename, mustExist):
     file = (getDataFile.dataPath + os.sep + filename)
 
-    if not os.path.isfile(file):
-        print("{} Failed to find Data file '{}'".format(errorMessage(), file))
-        file = ""
+    if mustExist:
+        if not os.path.isfile(file):
+          print("{} Failed to find Data file '{}'".format(errorMessage(), file))
+          file = ""
 
     return file

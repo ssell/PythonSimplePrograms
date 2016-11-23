@@ -17,4 +17,5 @@
 # Program 1: Simple Output
 # ------------------------------------------------------------------------
 
-print("Hello, world!")
+def main():
+    print("Hello, world!")

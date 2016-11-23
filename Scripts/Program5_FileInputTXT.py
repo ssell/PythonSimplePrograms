@@ -22,7 +22,7 @@ import SimpleProgramUtilities as Utils
 
 # ------------------------------------------------------------------------
 # Prints the contents of the TXT file at the specified path
-# \return None.
+# \return TRUE if successfully read and printed file contents.
 # ------------------------------------------------------------------------
 
 def printFile(path):
@@ -46,11 +46,12 @@ def printFile(path):
 
 # ------------------------------------------------------------------------
 
-fileName = "Program5_Data.txt"
-filePath = Utils.getDataFile(fileName)
+def main():
+    fileName = "Program5_Data.txt"
+    filePath = Utils.getDataFile(fileName, True)
 
-if len(filePath) > 0:
-    if printFile(filePath):
-        print("\n\nSuccessfully read TXT file '{}'".format(filePath))
-    else:
-        print("\n\nFailed to read TXT file '{}'".format(filePath))
+    if len(filePath) > 0:
+        if printFile(filePath):
+            print("\n\nSuccessfully read TXT file '{}'".format(filePath))
+        else:
+            print("\n\nFailed to read TXT file '{}'".format(filePath))

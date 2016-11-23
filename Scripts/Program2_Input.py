@@ -17,5 +17,6 @@
 # Program 2: Simple input
 # ------------------------------------------------------------------------
 
-name = input("What is your name?\n")
-print("Hello, %s." % name)
+def main():
+    name = input("What is your name?\n")
+    print("Hello, %s." % name)

@@ -45,6 +45,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Scripts\Program5_FileInputTXT.py" />
+    <Compile Include="Scripts\Program6_FileOutputTXT.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Scripts\SimpleProgramUtilities.py">
       <SubType>Code</SubType>
     </Compile>

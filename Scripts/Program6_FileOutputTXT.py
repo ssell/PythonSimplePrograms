@@ -15,18 +15,34 @@
 # ------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------
-# Program 4: Fibonacci
+# Program 6: Writing out to TXT file
 # ------------------------------------------------------------------------
 
 import SimpleProgramUtilities as Utils
 
-# Recursive fibonacci function
-def fibonacci(i, first, second, limit):
-    if second > limit:
-        return
-    print("Fibonacci {}: \t{}".format(i, second))
-    fibonacci((i + 1), second, (first + second), limit)
+def getNextLine():
+    line = input("> ")
+    return line
+
+def shouldQuit(str):
+    result = False
+     
+    if str == "end":
+        result = True
+    
+    return result
 
 def main():
-    upperLimit = Utils.toInt(input("Generate all Fibonacci numbers less than: "), 100)
-    fibonacci(1, 0, 1, upperLimit)
+    filename = "Program6_Data.txt"
+    filePath = Utils.getDataFile(filename, False)
+    file = open(filePath, 'w')
+
+    print("Enter text to be written. When done writing, enter 'end'\n")
+
+    nextLine = getNextLine()
+
+    while not shouldQuit(nextLine):
+        file.write(nextLine + "\n")
+        nextLine = getNextLine()
+
+    print("\nFinished writing to TXT file '{}'".format(filePath))

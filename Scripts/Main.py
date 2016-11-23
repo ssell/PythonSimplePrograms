@@ -25,7 +25,7 @@ import SimpleProgramUtilities as Utils
 # ------------------------------------------------------------------------
 
 def getPrograms():
-    regex = re.compile("Program(\d)+_[a-zA-Z]+.py")
+    regex = re.compile("Program(\d)+_[a-zA-Z]+\.py")
     path = os.path.dirname(os.path.realpath(__file__))
     simplePrograms = []
 
@@ -35,6 +35,44 @@ def getPrograms():
             simplePrograms.append((fullFilePath, file))
 
     return simplePrograms
+
+# ------------------------------------------------------------------------
+# Converts a list of program names/path to module names to import.
+# \param programs
+# \return List of module names
+# ------------------------------------------------------------------------
+
+def getModuleNames(programs):
+    # Source: http://www.diveintopython.net/functional_programming/all_together.html
+    programToModule = lambda program: os.path.splitext(program[1])[0]
+    moduleNames = map(programToModule, programs)
+    return moduleNames
+
+# ------------------------------------------------------------------------
+# Retrieves and imports a map of modules
+# ------------------------------------------------------------------------
+
+def getModules(programs):
+    # Source: http://stackoverflow.com/a/301146
+    moduleNames = getModuleNames(programs)
+    modules = map(__import__, moduleNames)
+    return modules
+
+# ------------------------------------------------------------------------
+# Runs the specified program.
+# \param program Program tuple to run.
+# \return None.
+# ------------------------------------------------------------------------
+
+# ! Note ! This function is no longer used. It is kept here for future
+# reference and to also serve as a reminder of what does not work.
+# Exec was not sufficient as it did not allow for the use of `input` 
+# within the external scripts. 
+
+# def runProgram(program):
+#     with open(program[0]) as file:
+#         code = compile(file.read(), program[0], "exec")
+#         exec(code)
 
 # ------------------------------------------------------------------------
 # Queries the user for which program to run from a displayed list.
@@ -57,25 +95,21 @@ def getProgramToRun(programs):
     return programIndex - 1
 
 # ------------------------------------------------------------------------
-# Runs the specified program.
-# \param program Program tuple to run.
-# \return None.
-# ------------------------------------------------------------------------
-
-def runProgram(program):
-    with open(program[0]) as file:
-        code = compile(file.read(), program[0], "exec")
-        exec(code)
-
-# ------------------------------------------------------------------------
 # Loops continuously and runs selected sample programs.
 # \return None.
 # ------------------------------------------------------------------------
 
 def main():
 
-    # Regex to match our sample program file names of 'Program#_Name.py'
+    # Gather all of the sample programs all dynamically imported modules.
+    # We then run the desired module via it's main function when selected.
+
+    # This approach is used instead of directly running the external script
+    # (for example through exec) since it allows for us to receive user 
+    # input which the other approaches do not.
+
     programs = getPrograms()
+    modules = list(getModules(programs))
 
     while True:
         programIndex = getProgramToRun(programs)
@@ -84,8 +118,8 @@ def main():
         print("\n! ---------------------------------------------------------------")
         print("! Start Running {}".format(program[1]))
         print("! ---------------------------------------------------------------\n")
-
-        runProgram(program)
+        
+        modules[programIndex].main()
 
         print("\n! ---------------------------------------------------------------")
         print("! Finish Running {}".format(program[1]))

@@ -17,30 +17,31 @@
 # Program 3: For-loop, built-in enumerate function, new style formatting
 # ------------------------------------------------------------------------
 
-friends = ["John", "Pat", "Gary", "Michael"]
+def main():
+    friends = ["John", "Pat", "Gary", "Michael"]
 
-print("Printing contents of 'friends' in order:")
+    print("Printing contents of 'friends' in order:")
 
-for i, name in enumerate(friends):
-    print("\tfriends[{iter}] = {name}".format(iter=i, name=name))
+    for i, name in enumerate(friends):
+        print("\tfriends[{iter}] = {name}".format(iter=i, name=name))
 
-# ------------------------------------------------------------------------
-# Print names in reverse-order using different format style
-# ------------------------------------------------------------------------
+    # --------------------------------------------------------------------
+    # Print names in reverse-order using different format style
+    # --------------------------------------------------------------------
 
-print("Printing contents of 'friends' in reverse-order:")
+    print("Printing contents of 'friends' in reverse-order:")
 
-numFriends = len(friends)
+    numFriends = len(friends)
 
-for i in range((numFriends - 1), -1, -1): 
-    print("\tfriends[{}] = {}".format(i, friends[i]))
+    for i in range((numFriends - 1), -1, -1): 
+        print("\tfriends[{}] = {}".format(i, friends[i]))
     
-# ------------------------------------------------------------------------
-# Print names containing only the letter 'a' using different format style
-# ------------------------------------------------------------------------
+    # --------------------------------------------------------------------
+    # Print names containing only the letter 'a' using different format style
+    # --------------------------------------------------------------------
 
-print("Printing contents of 'friends' that contains the letter 'a':")
+    print("Printing contents of 'friends' that contains the letter 'a':")
 
-for i, name in enumerate(friends):
-    if 'a' in name:
-        print("\tfriends[{1}] = {0}".format(friends[i], i))
+    for i, name in enumerate(friends):
+        if 'a' in name:
+            print("\tfriends[{1}] = {0}".format(friends[i], i))
